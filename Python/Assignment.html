@@ -13095,7 +13095,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">volume</span> <span class="o">=</span> <span class="n">slicer</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">loadVolume</span><span class="p">(</span><span class="s1">&#39;BoneDataSet.nrrd&#39;</span><span class="p">)</span>
+<div class=" highlight hl-python"><pre><span></span><span class="n">volume</span> <span class="o">=</span> <span class="n">slicer</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">loadVolume</span><span class="p">(</span><span class="s1">&#39;CT.nrrd&#39;</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13110,7 +13110,7 @@ div#notebook {
     <div class="input_area">
 <div class=" highlight hl-python"><pre><span></span><span class="n">slicernb</span><span class="o">.</span><span class="n">AppWindow</span><span class="o">.</span><span class="n">setWindowSize</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 <span class="n">slicernb</span><span class="o">.</span><span class="n">showSliceViewAnnotations</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
-
+<span class="c1"># for viewing initial set up</span>
 <span class="n">display</span><span class="p">(</span><span class="n">slicernb</span><span class="o">.</span><span class="n">ViewDisplay</span><span class="p">(</span><span class="s2">&quot;FourUp&quot;</span><span class="p">))</span>
 </pre></div>
 
@@ -13184,7 +13184,8 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">segmentEditorNode</span><span class="o">.</span><span class="n">SetSelectedSegmentID</span><span class="p">(</span><span class="s1">&#39;bone&#39;</span><span class="p">)</span>
+<div class=" highlight hl-python"><pre><span></span><span class="c1"># for selecting the segment and getting its ID for future use</span>
+<span class="n">segmentEditorNode</span><span class="o">.</span><span class="n">SetSelectedSegmentID</span><span class="p">(</span><span class="s1">&#39;bone&#39;</span><span class="p">)</span>
 <span class="n">segmentId</span> <span class="o">=</span> <span class="n">segmentationNode</span><span class="o">.</span><span class="n">GetSegmentation</span><span class="p">()</span><span class="o">.</span><span class="n">GetSegmentIdBySegmentName</span><span class="p">(</span><span class="s1">&#39;bone&#39;</span><span class="p">)</span>
 </pre></div>
 
@@ -13231,7 +13232,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="c1">#for Thresholding</span>
+<div class=" highlight hl-python"><pre><span></span><span class="c1"># for Thresholding</span>
 <span class="n">segmentEditorNode</span><span class="o">.</span><span class="n">SetSelectedSegmentID</span><span class="p">(</span><span class="n">segmentId</span><span class="p">)</span>
 <span class="n">segmentEditorWidget</span><span class="o">.</span><span class="n">setActiveEffectByName</span><span class="p">(</span><span class="s1">&#39;Threshold&#39;</span><span class="p">)</span>
 <span class="n">effect</span> <span class="o">=</span> <span class="n">segmentEditorWidget</span><span class="o">.</span><span class="n">activeEffect</span><span class="p">()</span>
@@ -13270,6 +13271,7 @@ div#notebook {
 <span class="n">app</span><span class="o">.</span><span class="n">setWindowSize</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">app</span><span class="o">.</span><span class="n">setContents</span><span class="p">(</span><span class="s2">&quot;viewers&quot;</span><span class="p">)</span>
 
+<span class="c1"># for segmenting Region of Interest </span>
 <span class="n">live3dSeg</span> <span class="o">=</span> <span class="n">slicernb</span><span class="o">.</span><span class="n">ViewInteractiveWidget</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">)</span>
 <span class="n">live3dSeg</span><span class="o">.</span><span class="n">trackMouseMove</span> <span class="o">=</span> <span class="bp">True</span>
 <span class="n">display</span><span class="p">(</span><span class="n">live3dSeg</span><span class="p">)</span>
@@ -13319,7 +13321,8 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">slicernb</span><span class="o">.</span><span class="n">ViewDisplay</span><span class="p">(</span><span class="s2">&quot;FourUp&quot;</span><span class="p">))</span>
+<div class=" highlight hl-python"><pre><span></span><span class="c1"># ROI after aplying the closing</span>
+<span class="n">display</span><span class="p">(</span><span class="n">slicernb</span><span class="o">.</span><span class="n">ViewDisplay</span><span class="p">(</span><span class="s2">&quot;FourUp&quot;</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -13353,7 +13356,8 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">effect</span><span class="o">.</span><span class="n">setParameter</span><span class="p">(</span><span class="s1">&#39;SmoothingMethod&#39;</span><span class="p">,</span> <span class="s1">&#39;MEDIAN&#39;</span><span class="p">)</span>
+<div class=" highlight hl-python"><pre><span></span><span class="c1"># applying various filters for enhanced model</span>
+<span class="n">effect</span><span class="o">.</span><span class="n">setParameter</span><span class="p">(</span><span class="s1">&#39;SmoothingMethod&#39;</span><span class="p">,</span> <span class="s1">&#39;MEDIAN&#39;</span><span class="p">)</span>
 <span class="n">effect</span><span class="o">.</span><span class="n">setParameter</span><span class="p">(</span><span class="s2">&quot;KernelSizeMm&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 <span class="n">effect</span><span class="o">.</span><span class="n">self</span><span class="p">()</span><span class="o">.</span><span class="n">onApply</span><span class="p">()</span>
 </pre></div>
@@ -13399,7 +13403,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="c1"># after modifying through Scissors</span>
+<div class=" highlight hl-python"><pre><span></span><span class="c1"># after modifying through Scissors and applying filters</span>
 <span class="n">display</span><span class="p">(</span><span class="n">slicernb</span><span class="o">.</span><span class="n">ViewDisplay</span><span class="p">(</span><span class="s2">&quot;OneUp3D&quot;</span><span class="p">))</span>
 </pre></div>
 
@@ -13436,7 +13440,7 @@ div#notebook {
     <div class="input_area">
 <div class=" highlight hl-python"><pre><span></span><span class="n">slicer</span><span class="o">.</span><span class="n">modules</span><span class="o">.</span><span class="n">jupyterkernel</span><span class="o">.</span><span class="n">setPollIntervalSec</span><span class="p">(</span><span class="mf">0.001</span><span class="p">)</span>
 
-<span class="c1"># 3D view</span>
+<span class="c1"># for 3D view</span>
 <span class="n">slicernb</span><span class="o">.</span><span class="n">AppWindow</span><span class="o">.</span><span class="n">setWindowSize</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 <span class="n">live3d</span> <span class="o">=</span> <span class="n">slicernb</span><span class="o">.</span><span class="n">ViewInteractiveWidget</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">)</span>
 <span class="n">live3d</span><span class="o">.</span><span class="n">trackMouseMove</span> <span class="o">=</span> <span class="bp">True</span>
@@ -13461,10 +13465,10 @@ div#notebook {
 
  
  
-<div id="5a50f4d6-208e-40de-add4-694b9980d24c"></div>
+<div id="e30b4be9-3e86-49c6-b469-293e446bd650"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#5a50f4d6-208e-40de-add4-694b9980d24c');
+var element = $('#e30b4be9-3e86-49c6-b469-293e446bd650');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "bd35c9f29a434211a982e03141758b08", "version_major": 2, "version_minor": 0}
