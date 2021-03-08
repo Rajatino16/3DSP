@@ -3,7 +3,7 @@ slicernb.showSliceViewAnnotations(False)
 slicer.mrmlScene.Clear(False)
 
 # specify the absolute file path of CT.nrrd
-volume = slicer.util.loadVolume('C:/Users/baxir/OneDrive/Desktop/Assignment/Python/CT.nrrd')
+volume = slicer.util.loadVolume('C:/Desktop/Assignment/Python/CT.nrrd')
 
 slicernb.AppWindow.setWindowSize(scale=1)
 slicernb.showSliceViewAnnotations(False)
