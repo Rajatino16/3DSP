@@ -1,18 +1,18 @@
 import JupyterNotebooksLib as slicernb
-slicernb.AppWindow.setWindowSize(scale=0.5)
 slicernb.showSliceViewAnnotations(False)
 slicer.mrmlScene.Clear(False)
 
-volume = slicer.util.loadVolume('CT.nrrd')
+# specify the absolute file path of CT.nrrd
+volume = slicer.util.loadVolume('C:/Users/baxir/OneDrive/Desktop/Assignment/Python/CT.nrrd')
 
-slicernb.AppWindow.setWindowSize(scale=0.5)
+slicernb.AppWindow.setWindowSize(scale=1)
 slicernb.showSliceViewAnnotations(False)
 # for viewing initial set up
-display(slicernb.ViewDisplay("FourUp"))
+slicernb.ViewDisplay("FourUp")
 
 segmentationNode = slicer.vtkMRMLSegmentationNode()
 slicer.mrmlScene.AddNode(segmentationNode)
-segmentationNode.CreateDefaultDisplayNodes() 
+segmentationNode.CreateDefaultDisplayNodes()
 segmentationNode.SetReferenceImageGeometryParameterFromVolumeNode(volume)
 # Creating segment editor to get access to effects
 segmentEditorWidget = slicer.qMRMLSegmentEditorWidget()
@@ -24,8 +24,10 @@ segmentEditorWidget.setMRMLSegmentEditorNode(segmentEditorNode)
 segmentEditorWidget.setSegmentationNode(segmentationNode)
 segmentEditorWidget.setMasterVolumeNode(volume)
 
-# for manually adding the Bone segment
+# for manually adding the Bone segment --> select Add then rename the segment as 'bone'
 segmentEditorWidget.show()
+
+####################################(1)####################################
 
 # for selecting the segment and getting its ID for future use
 segmentEditorNode.SetSelectedSegmentID('bone')
@@ -42,24 +44,29 @@ effect.setParameter('MaximumThreshold',1492)
 effect.self().onApply()
 
 # for Islands Selection
-segmentEditorWidget.show()
+segmentEditorWidget.setActiveEffectByName('Islands')
+effect.setParameter('Operation','KEEP_SELECTED_ISLAND')
+
+# with mouse select the part of the bone that is needed
+# once done with selection run below statement
+####################################(2)####################################
+
+segmentEditorWidget.setActiveEffectByName('None')
 
 segmentEditorNode.SetSelectedSegmentID(segmentId)
-app = slicernb.AppWindow(contents="viewers", windowScale=1)
-slicernb.setViewLayout("FourUp")
-app.setWindowSize(scale=1)
-app.setContents("viewers")
 
-# for segmenting Region of Interest 
+# for segmenting Region of Interest
 live3dSeg = slicernb.ViewInteractiveWidget('1')
 live3dSeg.trackMouseMove = True
-display(live3dSeg)
+live3dSeg
 segmentEditorWidget.setActiveEffectByName("Scissors")
 effect = segmentEditorWidget.activeEffect()
 effect.setParameter('Operation','EraseOutside')
 effect.setParameter('Shape','FreeForm')
 
-segmentEditorWidget.show()
+####################################(3)####################################
+
+segmentEditorWidget.setActiveEffectByName('None')
 
 segmentEditorWidget.setActiveEffectByName('Smoothing')
 effect = segmentEditorWidget.activeEffect()
@@ -68,7 +75,7 @@ effect.setParameter("KernelSizeMm", 3)
 effect.self().onApply()
 
 # ROI after applying Closing
-display(slicernb.ViewDisplay("FourUp"))
+slicernb.ViewDisplay("FourUp")
 
 # applying various filters for enhanced model
 effect.setParameter('SmoothingMethod', 'MEDIAN')
@@ -84,16 +91,18 @@ effect = segmentEditorWidget.activeEffect()
 effect.setParameter('Operation','EraseInside')
 effect.setParameter('Shape','FreeForm')
 
+segmentEditorWidget.show()
+# to see the segmented region in 3D --> select Show 3D button below Master Volume Field in segment Editor segmentEditorWidget
 
-# after modifying through Scissors and applying filters
-display(slicernb.ViewDisplay("OneUp3D"))
+####################################(4)####################################
 
-slicer.modules.jupyterkernel.setPollIntervalSec(0.001)
+# After modifying the 3D Model as needed through Scissors and filters
+segmentEditorWidget.setActiveEffectByName('None')
+
+slicernb.ViewDisplay("OneUp3D")
 
 # for 3D view
-slicernb.AppWindow.setWindowSize(scale=0.5)
+slicernb.AppWindow.setWindowSize(scale=1)
 live3d = slicernb.ViewInteractiveWidget('1')
 live3d.trackMouseMove = True
-display(live3d)
-
-
+live3d
