@@ -1,12 +1,14 @@
 # 3DSP
 
-In the "Python" folder there exist 3 files, the jupyter Notebook (IPYNB file), Python Script (PY file), and CT.nrrd.
+For Python Code without the use of 3D Slicer: the folder "Python" has the jupyter Notebook (IPYNB file), Python Script (PY file), Dataset and the STL file.
+
+In the "Python (with Slicer)" folder there exist 3 files, the jupyter Notebook (IPYNB file), Python Script (PY file), and CT.nrrd.
 
 To Run the Python Script:
 
 Copy the code and paste it in the python console inside Slicer.
 
-There are 4 lines in the script after which interaction with Slicer is needed. These 4 lines are marked by a series of # in the script. 
+There are 4 lines in the script after which interaction with Slicer is needed. These 4 lines are marked by a series of # in the script.
 ex; ######(1)###### indicates first location.
 
 These 4 lines require the user:
